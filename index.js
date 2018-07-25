@@ -6,12 +6,17 @@ const normalizeEmail = require('normalize-email')
 const normalizeUrl = require('normalize-url')
 
 const run = str => {
-  str = str.trim()
   if (!str) {
     return { error: 'missing param' }
   }
-  if (str.indexOf('.') === -1) {
+  str = str.trim()
+  const pos = str.indexOf('.')
+  if (pos === -1) {
     return { error: 'need at least one "."' }
+  }
+
+  if (!pos || str.length < 3) {
+    return { error: 'need something on both sides of the "."' }
   }
 
   const pAt = str.indexOf('@')
@@ -24,20 +29,23 @@ const run = str => {
   }
 
   const [name, domain] = str.replace(/^mailto:/, '').split('@')
-  if (domain) {
-    if (bothAtSlash && pAt < pSlash) {
-      return { error: 'bad email (/)' }
-    }
 
-    const email = normalizeEmail(`${name}@${domain}`)
-    const [nameNormalized] = email.split('@')
-    const d = normalizeUrl(domain, { stripWWW: false }).slice(7)
-    if (email === `${nameNormalized}@${d}`) {
-      return { email }
-    }
-    return { error: 'bad email' }
+  if (!domain) {
+    return { url: normalizeUrl(str, { stripWWW: false }) }
   }
-  return { url: normalizeUrl(name, { stripWWW: false }) }
+
+  if (bothAtSlash && pAt < pSlash) {
+    return { error: 'bad email (/)' }
+  }
+
+  const email = normalizeEmail(`${name}@${domain}`)
+  const [nameNormalized] = email.split('@')
+  const d = normalizeUrl(domain, { stripWWW: false }).slice(7)
+  if (email === `${nameNormalized}@${d}`) {
+    return { email }
+  }
+
+  return { error: 'bad email' }
 }
 
 module.exports = run

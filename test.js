@@ -3,6 +3,49 @@
 import test from 'ava'
 import fn from '.'
 
+test('zero-0', t => {
+  const { url, email, error } = fn()
+  t.truthy(error)
+  t.falsy(url)
+  t.falsy(email)
+})
+
+test('zero-1', t => {
+  const { url, email, error } = fn(' ')
+  t.truthy(error)
+  t.falsy(url)
+  t.falsy(email)
+})
+
+test('zero-2', t => {
+  const { url, email, error } = fn('.')
+  t.truthy(error)
+  t.falsy(url)
+  t.falsy(email)
+})
+
+// FIXME: should not error, êxample should be "punycoded"
+test.skip('zero-3', t => {
+  const { url, email, error } = fn('joe@www.êxample.com')
+  t.falsy(error)
+  t.falsy(url)
+  t.is(email, 'joe@xn--xample-hva.com')
+})
+
+test('zero-10', t => {
+  const { url, email, error } = fn('joe@xn--xample-hva.com')
+  t.falsy(error)
+  t.falsy(url)
+  t.is(email, 'joe@xn--xample-hva.com')
+})
+
+test('zero-10b', t => {
+  const { url, email, error } = fn('http://xn--xample-hva.com')
+  t.falsy(error)
+  t.is(url, 'http://xn--xample-hva.com')
+  t.falsy(email)
+})
+
 test('zero', t => {
   const { url, email, error } = fn('joe@bob.ca/john')
   t.truthy(error)
@@ -57,4 +100,11 @@ test('five', t => {
   t.falsy(error)
   t.falsy(url)
   t.is(email, 'joe@bob.ca')
+})
+
+test('six', t => {
+  const { url, email, error } = fn('www.êxample.com')
+  t.falsy(error)
+  t.is(url, 'http://www.xn--xample-hva.com')
+  t.falsy(email)
 })

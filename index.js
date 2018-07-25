@@ -1,6 +1,6 @@
 'use strict'
 
-// FIXME: Add unit tests
+// woot
 
 const normalizeEmail = require('normalize-email')
 const normalizeUrl = require('normalize-url')
@@ -39,13 +39,5 @@ const run = str => {
   }
   return { url: normalizeUrl(name, { stripWWW: false }) }
 }
-
-/*
-const { url, email, error } = run('bob')
-
-console.log('url', url)
-console.log('email', email)
-console.log('error', error)
-*/
 
 module.exports = run

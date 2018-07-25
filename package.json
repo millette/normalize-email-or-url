@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "main": "index.js",
   "license": "AGPL-3.0",
-  "repository": "millette/ghraphql",
+  "repository": "millette/normalize-email-or-url",
   "author": {
     "name": "Robin Millette",
     "email": "robin@millette.info",
@@ -14,14 +14,13 @@
   },
   "keywords": ["normmalize", "email", "url"],
   "lint-staged": {
-    "*.js": "nyc ava",
     "*.{js,json,md}": ["prettier-standard", "git add"]
   },
   "scripts": {
     "test": "standard && nyc ava",
     "lint": "standard",
     "format": "prettier-standard '**/*.+(js|json|md)'",
-    "precommit": "lint-staged"
+    "precommit": "nyc ava && lint-staged"
   },
   "dependencies": {
     "normalize-email": "^1.1.1",

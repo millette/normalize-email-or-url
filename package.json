@@ -14,7 +14,7 @@
   },
   "keywords": ["normmalize", "email", "url"],
   "lint-staged": {
-    "*.js": ["nyc ava", "git add"],
+    "*.js": "nyc ava",
     "*.{js,json,md}": ["prettier-standard", "git add"]
   },
   "scripts": {

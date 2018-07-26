@@ -10,21 +10,16 @@ const run = str => {
     return { error: 'missing param' }
   }
   str = str.trim()
-  const pos = str.indexOf('.')
-  if (pos === -1) {
-    return { error: 'need at least one "."' }
-  }
 
-  if (!pos || str.length < 3) {
+  if (str.split('.').filter(Boolean).length < 2) {
     return { error: 'need something on both sides of the "."' }
   }
 
   const pAt = str.indexOf('@')
   const pSlash = str.indexOf('/')
   const bothAtSlash = pAt !== -1 && pSlash !== -1
-  const slashPreAt = bothAtSlash && pSlash < pAt
 
-  if (slashPreAt) {
+  if (bothAtSlash && pSlash < pAt) {
     return { url: normalizeUrl(str, { stripWWW: false }) }
   }
 
@@ -43,9 +38,13 @@ const run = str => {
   const d = normalizeUrl(domain, { stripWWW: false }).slice(7)
   if (email === `${nameNormalized}@${d}`) {
     return { email }
+  } else {
+    // FIXME: should not error, êxample should be "punycoded"
   }
 
-  return { error: 'bad email' }
+  // see test "idn email fixed"
+  // should never be reached
+  return { error: 'unexpected error' }
 }
 
 module.exports = run

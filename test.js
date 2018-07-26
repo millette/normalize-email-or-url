@@ -46,6 +46,13 @@ test('zero-4', t => {
   t.falsy(email)
 })
 
+test('zero-5', t => {
+  const { url, email, error } = fn('Public Profilehttps://www.linkedin.com/in')
+  t.truthy(error)
+  t.falsy(url)
+  t.falsy(email)
+})
+
 // successes
 test('url with path, missing http', t => {
   const { url, email, error } = fn('bob.ca')

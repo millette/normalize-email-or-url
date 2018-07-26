@@ -19,32 +19,36 @@ const run = str => {
   const pSlash = str.indexOf('/')
   const bothAtSlash = pAt !== -1 && pSlash !== -1
 
-  if (bothAtSlash && pSlash < pAt) {
-    return { url: normalizeUrl(str, { stripWWW: false }) }
+  try {
+    if (bothAtSlash && pSlash < pAt) {
+      return { url: normalizeUrl(str, { stripWWW: false }) }
+    }
+
+    const [name, domain] = str.replace(/^mailto:/, '').split('@')
+
+    if (!domain) {
+      return { url: normalizeUrl(str, { stripWWW: false }) }
+    }
+
+    if (bothAtSlash && pAt < pSlash) {
+      return { error: 'bad email (/)' }
+    }
+
+    const email = normalizeEmail(`${name}@${domain}`)
+    const [nameNormalized] = email.split('@')
+    const d = normalizeUrl(domain, { stripWWW: false }).slice(7)
+    if (email === `${nameNormalized}@${d}`) {
+      return { email }
+    } else {
+      // FIXME: should not error, êxample should be "punycoded"
+    }
+
+    // see test "idn email fixed"
+    // should never be reached
+    return { error: 'unexpected error' }
+  } catch (error) {
+    return { error }
   }
-
-  const [name, domain] = str.replace(/^mailto:/, '').split('@')
-
-  if (!domain) {
-    return { url: normalizeUrl(str, { stripWWW: false }) }
-  }
-
-  if (bothAtSlash && pAt < pSlash) {
-    return { error: 'bad email (/)' }
-  }
-
-  const email = normalizeEmail(`${name}@${domain}`)
-  const [nameNormalized] = email.split('@')
-  const d = normalizeUrl(domain, { stripWWW: false }).slice(7)
-  if (email === `${nameNormalized}@${d}`) {
-    return { email }
-  } else {
-    // FIXME: should not error, êxample should be "punycoded"
-  }
-
-  // see test "idn email fixed"
-  // should never be reached
-  return { error: 'unexpected error' }
 }
 
 module.exports = run

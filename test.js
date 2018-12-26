@@ -61,7 +61,7 @@ test('url with path, missing http', t => {
   t.falsy(email)
 })
 
-test('url with path, with http', t => {
+test('url with path, with http (v2)', t => {
   const { url, email, error } = fn('http://bob.ca')
   t.falsy(error)
   t.is(url, 'http://bob.ca')
@@ -75,7 +75,7 @@ test('url with path, with https', t => {
   t.falsy(email)
 })
 
-test('url with path, missing http', t => {
+test('url with path, missing http (v3)', t => {
   const { url, email, error } = fn('bob.ca/joe')
   t.falsy(error)
   t.is(url, 'http://bob.ca/joe')

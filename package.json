@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "normalize-email": "^1.1.1",
-    "normalize-url": "^3.2.0"
+    "normalize-url": "^4.1.0"
   },
   "devDependencies": {
     "ava": "^1.0.1",

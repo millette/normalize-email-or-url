@@ -14,14 +14,18 @@
     "node": ">= 8.11.3"
   },
   "keywords": ["normmalize", "email", "url"],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
     "*.{js,json,md}": ["prettier-standard", "git add"]
   },
   "scripts": {
     "test": "standard && nyc ava",
     "lint": "standard",
-    "format": "prettier-standard '**/*.+(js|json|md)'",
-    "precommit": "nyc ava && lint-staged"
+    "format": "prettier-standard '**/*.+(js|json|md)'"
   },
   "dependencies": {
     "normalize-email": "^1.1.1",

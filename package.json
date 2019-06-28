@@ -13,14 +13,21 @@
   "engines": {
     "node": ">= 8.11.3"
   },
-  "keywords": ["normmalize", "email", "url"],
+  "keywords": [
+    "normmalize",
+    "email",
+    "url"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-    "*.{js,json,md}": ["prettier-standard", "git add"]
+    "*.{js,json,md}": [
+      "prettier-standard",
+      "git add"
+    ]
   },
   "scripts": {
     "test": "standard && nyc ava",
@@ -36,7 +43,7 @@
     "husky": "^1.3.1",
     "lint-staged": "^8.1.0",
     "nyc": "^13.1.0",
-    "prettier-standard": "^8.0.1",
+    "prettier-standard": "^9.1.1",
     "standard": "^12.0.1"
   }
 }

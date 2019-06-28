@@ -30,6 +30,7 @@
     ]
   },
   "scripts": {
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "test": "standard && nyc ava",
     "lint": "standard",
     "format": "prettier-standard '**/*.+(js|json|md)'"
@@ -40,6 +41,7 @@
   },
   "devDependencies": {
     "ava": "^2.1.0",
+    "coveralls": "^3.0.4",
     "husky": "^2.7.0",
     "lint-staged": "^8.2.1",
     "nyc": "^14.1.1",

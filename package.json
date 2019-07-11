@@ -11,7 +11,7 @@
     "url": "http://robin.millette.info"
   },
   "engines": {
-    "node": ">= 8.11.3"
+    "node": ">= 10.16.0"
   },
   "keywords": [
     "normmalize",
@@ -40,12 +40,12 @@
     "normalize-url": "^4.3.0"
   },
   "devDependencies": {
-    "ava": "^2.1.0",
+    "ava": "^2.2.0",
     "coveralls": "^3.0.4",
-    "husky": "^2.7.0",
-    "lint-staged": "^8.2.1",
+    "husky": "2.7.0",
+    "lint-staged": "^9.2.0",
     "nyc": "^14.1.1",
     "prettier-standard": "^9.1.1",
-    "standard": "^12.0.1"
+    "standard": "^13.0.1"
   }
 }

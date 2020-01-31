@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "ava": "2.4.0",
-    "coveralls": "^3.0.6",
+    "coveralls": "^3.0.9",
     "husky": "^4.2.1",
     "lint-staged": "^10.0.7",
     "nyc": "^15.0.0",

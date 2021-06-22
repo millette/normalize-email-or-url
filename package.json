@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "normalize-email": "^1.1.1",
-    "normalize-url": "^5.3.1",
+    "normalize-url": "^6.1.0",
     "verdaccio-fix": "^0.3.4"
   },
   "devDependencies": {

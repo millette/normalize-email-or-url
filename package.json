@@ -1,7 +1,7 @@
 {
   "name": "normalize-email-or-url",
   "description": "Return normalized email or url from a string.",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "main": "index.js",
   "license": "AGPL-3.0",
   "repository": "millette/normalize-email-or-url",
